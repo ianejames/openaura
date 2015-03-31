@@ -56,4 +56,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  get 'artists/:id' => 'artists#show', :as => 'artist'
+
 end
