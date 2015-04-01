@@ -1,2 +1,20 @@
 <h1><%= @artist.name %></h1>
-<p>Find me in app/views/artists/show.html.erb</p>
+
+<table class="particles">
+  <thead>
+    <tr>
+      <th scope="col" class="particle-id">ID</td>
+      <th scope="col" class="particle-provider">Provider</td>
+      <th scope="col" class="particle-date">Date</td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @particles.particles.each do |particle| %>
+    <tr class="particle">
+      <td class="particle-id"><%= particle['oa_particle_id'] %></td>
+      <td class="particle-provider"><%= particle['source']['provider']['name'] %></td>
+      <td class="particle-date"><%= Date.parse(particle['date']).to_formatted_s(:long_ordinal) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
