@@ -24,6 +24,8 @@ class ArtistsController < ApplicationController
 
     # Given an array of particles, sorts them and returns the sorted array.
     def sort_particles(particles)
+      @chunk_size = params[:chunk_size] || "1"
+
       particles_by_source_id = particles.group_by {|p| p['source']['oa_source_id'] }
 
       # The following code generates an array of hashes, each hash
@@ -40,6 +42,6 @@ class ArtistsController < ApplicationController
 
       # Creates an array of particle groups, then chooses them in a
       # round-robin fashion to create a flat array of particles.
-      sources.map {|s| s[:particles] }.interleave
+      sources.map {|s| s[:particles] }.interleave(chunk_size: @chunk_size.to_i)
     end
 end

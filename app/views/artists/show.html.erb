@@ -1,5 +1,11 @@
 <h1><%= @artist.name %></h1>
 
+<%= form_tag artist_path(params[:id]), method: "get" do %>
+  <%= label_tag :chunk_size, "Slice" %><br>
+  <%= select_tag :chunk_size, options_for_select((1..5).to_a, @chunk_size) %>
+  <%= submit_tag "Submit" %>
+<% end %>
+
 <table class="particles">
   <thead>
     <tr>
