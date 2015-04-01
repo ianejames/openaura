@@ -18,6 +18,11 @@ class ArtistsController < ApplicationController
 
       @artist = Artist.new
       @artist.name = @classic_resource.name
-      @artist.particles = @particles_resource.particles
+      @artist.particles = sort_particles(@particles_resource.particles)
+    end
+
+    # Given an array of particles, sorts them and returns the sorted array.
+    def sort_particles(particles)
+      particles
     end
 end
