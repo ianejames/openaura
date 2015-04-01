@@ -1,4 +1,4 @@
-<h1><%= @artist.name %></h1>
+<h1><%= @classic_resource.name %></h1>
 
 <table class="particles">
   <thead>
@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-  <% @particles.particles.each do |particle| %>
+  <% @particles_resource.particles.each do |particle| %>
     <tr class="particle">
       <td class="particle-id"><%= particle['oa_particle_id'] %></td>
       <td class="particle-provider"><%= particle['source']['provider']['name'] %></td>

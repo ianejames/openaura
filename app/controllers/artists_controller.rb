@@ -9,7 +9,7 @@ class ArtistsController < ApplicationController
   private
 
     def set_artist
-      @artist = Openaura::ClassicResource.new(params[:id], ENV['OPENAURA_API_KEY'])
-      @particles = Openaura::ParticlesResource.new(params[:id], ENV['OPENAURA_API_KEY'])
+      @classic_resource = Openaura::ClassicResource.new(params[:id], ENV['OPENAURA_API_KEY'])
+      @particles_resource = Openaura::ParticlesResource.new(params[:id], ENV['OPENAURA_API_KEY'])
     end
 end
