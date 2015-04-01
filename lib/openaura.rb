@@ -59,4 +59,35 @@ module Openaura
 
   end
 
+  class ParticlesResource < Resource
+    DEFAULT_LIMIT = 100
+
+    attr_accessor :artist_id, :api_key, :limit
+
+    def initialize(artist_id, api_key, options = {})
+      @artist_id = artist_id
+      @api_key = api_key
+      @limit = options.fetch(:limit, DEFAULT_LIMIT)
+
+      super(path, query_hash)
+    end
+
+    def path
+      @path ||= "/" + [ "v1", "particles", "artists", artist_id ].join("/")
+    end
+
+    def query_hash
+      @query_hash ||= {
+        id_type: "oa:artist_id",
+        limit: limit,
+        api_key: api_key,
+      }
+    end
+
+    def particles
+      @particles ||= content['particles']
+    end
+
+  end
+
 end
