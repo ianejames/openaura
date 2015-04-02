@@ -56,6 +56,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  get 'artists/search' => 'artists#search', :as => 'search_artists'
   get 'artists/:id' => 'artists#show', :as => 'artist'
 
 end

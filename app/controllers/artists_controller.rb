@@ -3,12 +3,23 @@ require 'core_ext/array/interleave'
 
 class ArtistsController < ApplicationController
   class Artist
-    attr_accessor :name, :particles
+    attr_accessor :id, :name, :particles
   end
 
   before_action :set_artist, only: [:show]
 
   def show
+  end
+
+  def search
+    @q = params[:q]
+    @search_resource = Openaura::SearchResource.new(@q, ENV['OPENAURA_API_KEY'])
+    @artists = @search_resource.content.map do |artist_resource|
+      Artist.new.tap do |a|
+        a.id = artist_resource['oa_artist_id']
+        a.name = artist_resource['name']
+      end
+    end
   end
 
   private

@@ -1,0 +1,24 @@
+<h1>Search</h1>
+
+<%= form_tag search_artists_path, method: "get" do %>
+  <%= label_tag :q, "Search" %><br>
+  <%= text_field_tag :q, @q%>
+  <%= submit_tag "Submit" %>
+<% end %>
+
+<table class="artists">
+  <thead>
+    <tr class="artist">
+      <th scope="col" class="artist-id">ID</th>
+      <th scope="col" class="artist-name">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @artists.each do |artist| %>
+    <tr class="artist">
+      <td class="artist-id"><%= artist.id %></td>
+      <td class="artist-name"><%= link_to artist_path(artist.id) do %><%= artist.name %><% end %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
