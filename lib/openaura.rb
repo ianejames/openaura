@@ -1,3 +1,5 @@
+require 'net/http'
+
 module Openaura
   class Resource
     HOST = "api.openaura.com"
