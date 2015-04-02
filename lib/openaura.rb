@@ -31,6 +31,33 @@ module Openaura
 
   end
 
+  class SearchResource < Resource
+    DEFAULT_LIMIT = 100
+
+    attr_accessor :q, :api_key, :limit
+
+    def initialize(q, api_key, options = {})
+      @q = q
+      @api_key = api_key
+      @limit = options.fetch(:limit, DEFAULT_LIMIT)
+
+      super(path, query_hash)
+    end
+
+    def path
+      @path ||= "/" + [ "v1", "search", "artists"].join("/")
+    end
+
+    def query_hash
+      @query_hash ||= {
+        q: q,
+        limit: limit,
+        api_key: api_key,
+      }
+    end
+
+  end
+
   class ClassicResource < Resource
     attr_accessor :artist_id, :api_key
 
